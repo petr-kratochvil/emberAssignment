@@ -7,6 +7,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('main', function () {
+    this.route('contact-detail', {path: '/detail/:contact_id'});
+    this.route('contact-edit', {path: '/edit/:contact_id'});
+    this.route('contact-new', {path: '/new'});
+  });
 });
 
 export default Router;

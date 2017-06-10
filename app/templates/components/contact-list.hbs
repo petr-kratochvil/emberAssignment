@@ -1,0 +1,7 @@
+<ul>
+    {{#each model as |contactItem|}}
+        <li>{{#link-to "main.contact-detail" contactItem}}
+            {{contactItem}}{{/link-to}}
+        </li>
+    {{/each}}
+</ul>

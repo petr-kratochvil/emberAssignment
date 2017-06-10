@@ -1,0 +1,13 @@
+<div class="title">
+    <h1>Contact list</h1>
+    <button class="buttonNewContact" {{action 'actionNewContact'}}>+ New contact</button>
+</div>
+
+<div class="contactList">
+  {{contact-list model=model}}
+</div>
+
+<div class="contactDetail">
+    Detail tady:
+    <hr>{{outlet}}<hr>
+</div>
