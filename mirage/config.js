@@ -45,9 +45,15 @@ export default function() {
   });
 
   this.get('/contacts/:id', function (db, request) {
-    var a = {data: contactsDB.find((item) => item.id == request.params.id)};
-    a.data.attributes.name += " je prase";
-    return a;
+    for (let c = 0; c < contactsDB.length; c++)
+      console.log("Jméno: "+contactsDB[c].attributes.name);
+
+    // deep copy
+    let item = JSON.parse(JSON.stringify(
+      contactsDB.find((it) => it.id == request.params.id)
+    ));
+    item.attributes.name += " je prase";
+    return {data: item};
   });
 }
 
