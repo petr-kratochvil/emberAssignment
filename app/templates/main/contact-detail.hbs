@@ -1,6 +1,14 @@
 {{model.name}}
 <button class="buttonRemoveContact" {{action 'actionRemoveContact' model.id}}>Remove</button>
 <hr>
-Name: {{model.name}}<br>
-Occupation: {{model.occupation}}<br>
-Born: {{model.born}}
+Name: {{model.name}} <img src="/edit.png" title="Edit" {{action 'actionEditName'}}>
+{{input type="text" value=editName id="editName" class="inputHide"}}
+<button id="editNameButton" {{action 'actionSaveName' model.id editName}}  class="inputHide">Save</button> <br>
+
+Occupation: {{model.occupation}} <img src="/edit.png" title="Edit" {{action 'actionEditOccupation'}}>
+{{input type="text" value=editOccupation id="editOccupation" class="inputHide"}}
+<button id="editOccupationButton" {{action 'actionSaveOccupation' model.id editOccupation}}  class="inputHide">Save</button> <br>
+
+Born: {{model.born}} <img src="/edit.png" title="Edit" {{action 'actionEditBorn'}}>
+{{input type="text" value=editBorn id="editBorn" class="inputHide"}}
+<button id="editBornButton" {{action 'actionSaveBorn' model.id editBorn}}  class="inputHide">Save</button> <br>

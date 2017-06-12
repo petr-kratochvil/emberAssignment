@@ -11,9 +11,10 @@
 
 .title button {
     border: 1px solid black;
-    background-color: blue;
+    background-color: cornflowerblue;
     display: inline-block;
     float: right;
+    margin-top: 1.5em;
 }
 .contactList {
     border: 1px solid black;
@@ -30,9 +31,18 @@
     padding: 1em;
 }
 
+.contactDetail .inputHide {
+    visibility: hidden;
+}
+
 .contactDetail .buttonRemoveContact {
     float: right;
     display: inline-block;
+}
+
+.contactDetail img {
+    height: 3ex;
+    cursor: pointer;
 }
 
 body {

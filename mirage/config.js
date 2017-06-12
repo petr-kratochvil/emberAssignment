@@ -54,8 +54,7 @@ export default function() {
   });
 
   this.del('/contacts/:id', function (db, request) {
-    console.log("Deleting no. "+request.params.id);
-    let index = contactsDB.find((it) => it.id == request.params.id).attributes.id;
+    let index = contactsDB.findIndex((it) => it.id == request.params.id);
     contactsDB.splice(index, 1);
   });
 
@@ -67,6 +66,15 @@ export default function() {
     }};
     contactsDB.push(item);
     return {data: item};
-  })
+  });
+
+  this.patch('/contacts/:id', function (db, request) {
+    let params = JSON.parse(request.requestBody).data.attributes;
+    let index = contactsDB.findIndex((it) => it.id == request.params.id);
+    contactsDB[index].attributes.name = params.name;
+    contactsDB[index].attributes.occupation = params.occupation;
+    contactsDB[index].attributes.born = params.born;
+    return {data: contactsDB[index]};
+  });
 }
 
