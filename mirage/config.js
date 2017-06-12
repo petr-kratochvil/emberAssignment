@@ -45,15 +45,14 @@ export default function() {
   });
 
   this.get('/contacts/:id', function (db, request) {
-    for (let c = 0; c < contactsDB.length; c++)
-      console.log("Jméno: "+contactsDB[c].attributes.name);
-
-    // deep copy
-    let item = JSON.parse(JSON.stringify(
-      contactsDB.find((it) => it.id == request.params.id)
-    ));
-    item.attributes.name += " je prase";
+    let item = contactsDB.find((it) => it.id == request.params.id);
+    if (typeof item === "undefined")
+      return {errors: [ { name: "Contact not found.", status: "404" }]};
     return {data: item};
+  });
+
+  this.del('/contacts/:id', function (db, request) {
+    console.log("Deleting no. "+request.params.id);
   });
 }
 

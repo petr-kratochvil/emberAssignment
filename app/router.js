@@ -11,6 +11,7 @@ Router.map(function() {
     this.route('contact-detail', {path: '/detail/:contact_id'});
     this.route('contact-edit', {path: '/edit/:contact_id'});
     this.route('contact-new', {path: '/new'});
+    this.route('nonexistent', {path: '/nonexistent'});
   });
 });
 
