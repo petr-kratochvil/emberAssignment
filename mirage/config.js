@@ -53,6 +53,8 @@ export default function() {
 
   this.del('/contacts/:id', function (db, request) {
     console.log("Deleting no. "+request.params.id);
+    let index = contactsDB.find((it) => it.id == request.params.id).attributes.id;
+    contactsDB.splice(index, 1);
   });
 }
 
