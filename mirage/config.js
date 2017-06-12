@@ -40,6 +40,8 @@ export default function() {
     }        
   ];
 
+  let nextID = 4;
+
   this.get('/contacts', () => {
     return {data: contactsDB};
   });
@@ -56,5 +58,15 @@ export default function() {
     let index = contactsDB.find((it) => it.id == request.params.id).attributes.id;
     contactsDB.splice(index, 1);
   });
+
+  this.post('/contacts', function (db, request) {
+    let item = { type: 'contacts', id: nextID++, attributes: {
+      name: request.params.name,
+      occupation: request.params.occupation,
+      born: request.params.born
+    }};
+    contactsDB.push(item);
+    return {data: item};
+  })
 }
 
