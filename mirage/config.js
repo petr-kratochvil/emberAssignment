@@ -28,15 +28,15 @@ export default function() {
     {
       type: 'contacts',
       id: 1, 
-      attributes: {name: 'Martin'}
+      attributes: {name: 'Martin', occupation: 'Developer', born: '1980/02/03'}
     }, {
       type: 'contacts',
       id: 2, 
-      attributes: {name: 'Michal'}
+      attributes: {name: 'Michal', occupation: 'Gardener', born: '1990/09/05'}
     }, {
       type: 'contacts',
       id: 3,
-      attributes: {name: 'Ježíš'}
+      attributes: {name: 'Ježíš', occupation: 'Feet washer', born: '0000/24/12'}
     }        
   ];
 
