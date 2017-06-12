@@ -24,21 +24,34 @@ export default function() {
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
 
-  let contactsDB = [
-    {
-      type: 'contacts',
-      id: 1, 
-      attributes: {name: 'Martin', occupation: 'Developer', born: '1980/02/03'}
-    }, {
-      type: 'contacts',
-      id: 2, 
-      attributes: {name: 'Michal', occupation: 'Gardener', born: '1990/09/05'}
-    }, {
-      type: 'contacts',
-      id: 3,
-      attributes: {name: 'Ježíš', occupation: 'Feet washer', born: '0000/24/12'}
-    }        
-  ];
+  let dbFromStorage = localStorage.getItem('db');
+
+  let contactsDB;
+
+  let saveToStorage = function () {
+    localStorage.setItem('db', JSON.stringify(contactsDB));
+  };
+
+  if (dbFromStorage) {
+    contactsDB = JSON.parse(dbFromStorage);
+  } else {
+      contactsDB = [
+      {
+        type: 'contacts',
+        id: 1, 
+        attributes: {name: 'Martin', occupation: 'Developer', born: '1980/02/03'}
+      }, {
+        type: 'contacts',
+        id: 2, 
+        attributes: {name: 'Michal', occupation: 'Gardener', born: '1990/09/05'}
+      }, {
+        type: 'contacts',
+        id: 3,
+        attributes: {name: 'Ježíš', occupation: 'Feet washer', born: '0000/24/12'}
+      }        
+    ];
+    saveToStorage();
+  }
 
   let nextID = 4;
 
@@ -56,6 +69,7 @@ export default function() {
   this.del('/contacts/:id', function (db, request) {
     let index = contactsDB.findIndex((it) => it.id == request.params.id);
     contactsDB.splice(index, 1);
+    saveToStorage();
   });
 
   this.post('/contacts', function (db, request) {
@@ -65,6 +79,7 @@ export default function() {
       born: request.params.born
     }};
     contactsDB.push(item);
+    saveToStorage();
     return {data: item};
   });
 
@@ -74,6 +89,7 @@ export default function() {
     contactsDB[index].attributes.name = params.name;
     contactsDB[index].attributes.occupation = params.occupation;
     contactsDB[index].attributes.born = params.born;
+    saveToStorage();
     return {data: contactsDB[index]};
   });
 }
